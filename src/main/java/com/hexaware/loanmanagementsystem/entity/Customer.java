@@ -1,11 +1,25 @@
 package com.hexaware.loanmanagementsystem.entity;
+import java.util.ArrayList;
+import java.util.List;
+
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import javax.persistence.Table;
+
+
+
 
 @Entity
+@Table(name= "customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,6 +55,21 @@ public class Customer {
 	
 	@Column(name="customer_Income")
 	public String customer_Income;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade =CascadeType.ALL)
+	@JoinColumn(name="customer_id_fk",referencedColumnName="customer_id")
+	private List<LoanDetails> loandetailsList =new ArrayList<>();
+	
+
+
+
+	public List<LoanDetails> getLoandetailsList() {
+		return loandetailsList;
+	}
+
+	public void setLoandetailsList(List<LoanDetails> loandetailsList) {
+		this.loandetailsList = loandetailsList;
+	}
 
 	public Customer() {
 		// TODO Auto-generated constructor stub
@@ -150,6 +179,7 @@ public class Customer {
 				+ ", customer_BankAccountNo=" + customer_BankAccountNo + ", customer_IncomeCategory="
 				+ customer_IncomeCategory + ", customer_Income=" + customer_Income + "]";
 	}
+
 	
 	
 
