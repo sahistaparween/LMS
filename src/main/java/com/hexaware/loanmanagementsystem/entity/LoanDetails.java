@@ -32,7 +32,7 @@ import javax.persistence.Table;
 		
 		
 		@Column(name="loan_type")
-		public String loan_type;
+		public String loantype;
 	
 
 		public LoanDetails() {
@@ -79,12 +79,12 @@ import javax.persistence.Table;
 			this.loan_amount = loan_amount;
 		}
 
-		public String getLoan_type() {
-			return loan_type;
+		public String getLoantype() {
+			return loantype;
 		}
 
-		public void setLoan_type(String loan_type) {
-			this.loan_type = loan_type;
+		public void setLoantype(String loantype) {
+			this.loantype = loantype;
 		}
 
 		

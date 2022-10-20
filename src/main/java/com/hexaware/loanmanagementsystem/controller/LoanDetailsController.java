@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.loanmanagementsystem.entity.Customer;
 import com.hexaware.loanmanagementsystem.entity.LoanDetails;
 
 import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
@@ -21,7 +22,7 @@ import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
 
 
 
-import com.hexaware.loanmanagementsystem.service.LoanDetailsService;
+import com.hexaware.loanmanagementsystem.service.ILoanDetailsService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,7 +38,7 @@ import io.swagger.annotations.ApiResponses;
 public class LoanDetailsController {
 	
 	@Autowired
-	LoanDetailsService LoanDetailsService;
+	ILoanDetailsService LoanDetailsService;
 	
 	@GetMapping("/getallloandetails")
 	@ApiOperation(value = "view a list of LoanDetailss",response = List.class)
@@ -76,12 +77,18 @@ public class LoanDetailsController {
 	
 	@PutMapping("/updateloandetails{loan_id}")
 	@ApiOperation(value = "Get a LoanDetails by id")
-	public String Update(
+	public LoanDetails Update(
 			@ApiParam (value = "LoanDetails object to update",required = true)
 			@RequestBody LoanDetails loandetails,
 			@ApiParam (value="returns the customer with id to update",required = true)
-			@PathVariable("loan_id") Long loan_id)throws ResourceNotFoundException {
+			@PathVariable("loan_id") Long loan_id)throws Exception {
+
+		LoanDetails existingLoanDetails =  LoanDetailsService.getLoanById(loan_id)
+				.orElseThrow(() -> new Exception("Loan Not Found" + loan_id));
+		existingLoanDetails.setLoan_id(loandetails.getLoan_id());
+		existingLoanDetails.setLoantype(loandetails.getLoantype());
 		
-		return LoanDetailsService.LoanDetailsupdate(loandetails, loan_id) + " updated successfully";
+		
+		return LoanDetailsService.updateLoanDetails(existingLoanDetails, loan_id);
 	}
 }

@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements ICustomerService{
 
 
 	@Override
-	public Customer updatecustomer(Customer customer) throws ResourceNotFoundException {
+	public Customer updatecustomer(Customer customer){
 		
 		return customerRepo.save(customer);
 }

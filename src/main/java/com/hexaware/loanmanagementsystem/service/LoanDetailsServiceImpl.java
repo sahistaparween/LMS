@@ -12,7 +12,7 @@ import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
 
 
 @Service
-public  class LoanDetailsServiceImpl implements LoanDetailsService{
+public  class LoanDetailsServiceImpl implements ILoanDetailsService{
 	
 	@Autowired
 	LoanDetailsRepository loandetailsRepo;
@@ -38,10 +38,15 @@ public  class LoanDetailsServiceImpl implements LoanDetailsService{
 		return loandetailsRepo.save(loandetails);
 	}
 
+
+
 	@Override
-	public int LoanDetailsupdate(LoanDetails loandetails, Long loan_id) throws ResourceNotFoundException
-	{
-		return 0;
+	public LoanDetails updateLoanDetails(LoanDetails loandetails, Long loan_id) throws ResourceNotFoundException {
+		
+		return loandetailsRepo.save(loandetails);
 	}
+
+	
+	
 
 }

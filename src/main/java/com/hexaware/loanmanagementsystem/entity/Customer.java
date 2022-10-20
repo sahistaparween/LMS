@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-
-
 @Entity
 @Table(name= "customer")
 public class Customer {
@@ -29,8 +27,8 @@ public class Customer {
 	@Column(name="customer_password")
 	public String customer_password;
 	
-	@Column(name="customer_name")
-	public String customer_name;
+	@Column(name="customerName")
+	public String customerName;
 	
 	@Column(name="customer_email")
 	public String customer_email;
@@ -91,12 +89,12 @@ public class Customer {
 		this.customer_password = customer_password;
 	}
 
-	public String getCustomer_name() {
-		return customer_name;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setCustomer_name(String customer_name) {
-		this.customer_name = customer_name;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getCustomer_email() {
@@ -155,13 +153,13 @@ public class Customer {
 		this.customer_Income = customer_Income;
 	}
 
-	public Customer(Long customer_id, String customer_password, String customer_name, String customer_email,
+	public Customer(Long customer_id, String customer_password, String customerName, String customer_email,
 			String customer_phone, String customer_address, String customer_gender, String customer_BankAccountNo,
 			String customer_IncomeCategory, String customer_Income) {
 		super();
 		this.customer_id = customer_id;
 		this.customer_password = customer_password;
-		this.customer_name = customer_name;
+		this.customerName = customerName;
 		this.customer_email = customer_email;
 		this.customer_phone = customer_phone;
 		this.customer_address = customer_address;
@@ -173,8 +171,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", customer_password=" + customer_password + ", customer_name="
-				+ customer_name + ", customer_email=" + customer_email + ", customer_phone=" + customer_phone
+		return "Customer [customer_id=" + customer_id + ", customer_password=" + customer_password + ", customerName="
+				+ customerName + ", customer_email=" + customer_email + ", customer_phone=" + customer_phone
 				+ ", customer_address=" + customer_address + ", customer_gender=" + customer_gender
 				+ ", customer_BankAccountNo=" + customer_BankAccountNo + ", customer_IncomeCategory="
 				+ customer_IncomeCategory + ", customer_Income=" + customer_Income + "]";

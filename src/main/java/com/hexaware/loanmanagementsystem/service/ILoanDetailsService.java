@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.hexaware.loanmanagementsystem.entity.LoanDetails;
 import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
 
-public interface LoanDetailsService {
+public interface ILoanDetailsService {
 
 
 	public List<LoanDetails> findAllloan();
@@ -14,5 +14,5 @@ public interface LoanDetailsService {
 
 	public void deleteById(Long loan_id)throws ResourceNotFoundException;;
 	public LoanDetails save(LoanDetails loandetails);
-	public int LoanDetailsupdate(LoanDetails loandetaials,Long loan_id)throws ResourceNotFoundException;
+	LoanDetails updateLoanDetails(LoanDetails loandetails,Long loan_id)throws ResourceNotFoundException;
 }

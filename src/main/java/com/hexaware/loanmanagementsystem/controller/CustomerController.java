@@ -71,7 +71,7 @@ public class CustomerController {
 			@ApiParam (value = "customer object to update",required = true)
 			 @RequestBody Customer customer,
 			@ApiParam (value="returns the customer with id to update",required = true)
-			@PathVariable("customer_id") Long customer_id) throws Exception {
+			@PathVariable("customer_id") Long customer_id) throws Exception  {
 		
 		Customer existingCustomer =  customerservice.getCustomerById(customer_id)
 				.orElseThrow(() -> new Exception("Customer not found with id" + customer_id));
