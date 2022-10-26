@@ -20,7 +20,7 @@ import org.springframework.data.annotation.CreatedDate;
 	public class LoanDetails {
 		
 		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="loanId")
 		public Long loanId;
 		
