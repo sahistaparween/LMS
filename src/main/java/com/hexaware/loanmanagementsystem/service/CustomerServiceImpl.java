@@ -22,23 +22,23 @@ public class CustomerServiceImpl implements ICustomerService{
 	}
 
 	@Override
-	public Optional<Customer> getCustomerById(Long customer_id) throws ResourceNotFoundException{
-		return customerRepo.findById(customer_id);
+	public Optional<Customer> getCustomerById(Long customerId) throws ResourceNotFoundException{
+		return customerRepo.findById(customerId);
 	}
 
 	@Override
-	public void deleteById_customer(Long customer_id)throws ResourceNotFoundException {
-		customerRepo.deleteById(customer_id);
+	public void deleteBycustomerId(Long customerId)throws ResourceNotFoundException {
+		customerRepo.deleteById(customerId);
 	}
 
 	@Override
-	public Customer save_customer(Customer customer) {
+	public Customer savecustomer(Customer customer) {
 		return customerRepo.save(customer);
 	}
 
 
 	@Override
-	public Customer updatecustomer(Customer customer){
+	public Customer updatecustomer(Customer customer,Long customerId){
 		
 		return customerRepo.save(customer);
 }

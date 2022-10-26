@@ -23,13 +23,13 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public Optional<Manager> getManagerById(Long manager_id) throws ResourceNotFoundException{
+	public Optional<Manager> getManagerById(Long managerId) throws ResourceNotFoundException{
 		return null ;
 	}
 
 	@Override
-	public void deleteManagerById(Long manager_id)throws ResourceNotFoundException {
-		managerRepo.deleteById(manager_id);
+	public void deleteManagerById(Long managerId)throws ResourceNotFoundException {
+		managerRepo.deleteById(managerId);
 	}
 
 	@Override
@@ -37,10 +37,6 @@ public class ManagerServiceImpl implements ManagerService {
 		return managerRepo.save(manager);
 	}
 
-	@Override
-	public int managerupdate(Manager manager, Long manager_id) throws ResourceNotFoundException{
-		return 0;
-	}
-
+	
 
 }

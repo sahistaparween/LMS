@@ -1,10 +1,17 @@
 package com.hexaware.loanmanagementsystem.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -13,68 +20,93 @@ import javax.persistence.Table;
 public class Manager {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="manager_id")
-	public Long manager_id;
+	@Column(name="managerId")
+	public Long managerId;
 	
 	
-	@Column(name="manager_email")
-	public String manager_email;
+	@Column(name="managerEmail")
+	public String managerEmail;
 	
-	@Column(name="manager_password")
-	public String manager_password;
+	@Column(name="managerPassword")
+	public String managerPassword;
 	
-	@Column(name="manager_name")
-	public String manager_name;
+	@Column(name="managerName")
+	public String managerName;
+	
+	@OneToMany(fetch =FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name= "managerId_fk",referencedColumnName="managerId")
+	private List<LoanDetails> loandetailslist =new ArrayList<>();
+
+	@OneToMany(fetch =FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name= "mangerId_fk",referencedColumnName="managerId")
+	private List<Customer> customerlist =new ArrayList<>();
+	
+	
+	public List<LoanDetails> getLoandetailslist() {
+		return loandetailslist;
+	}
+
+	public void setLoandetailslist(List<LoanDetails> loandetailslist) {
+		this.loandetailslist = loandetailslist;
+	}
+
+	public List<Customer> getCustomerlist() {
+		return customerlist;
+	}
+
+	public void setCustomerlist(List<Customer> customerlist) {
+		this.customerlist = customerlist;
+	}
 
 	public Manager() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getManager_id() {
-		return manager_id;
+	public Long getManagerId() {
+		return managerId;
 	}
 
-	public void setManager_id(Long manager_id) {
-		this.manager_id = manager_id;
+	public void setManagerId(Long managerId) {
+		this.managerId = managerId;
 	}
 
-	public String getManager_email() {
-		return manager_email;
+	public String getManagerEmail() {
+		return managerEmail;
 	}
 
-	public void setManager_email(String manager_email) {
-		this.manager_email = manager_email;
+	public void setManagerEmail(String managerEmail) {
+		this.managerEmail = managerEmail;
 	}
 
-	public String getManager_password() {
-		return manager_password;
+	public String getManagerPassword() {
+		return managerPassword;
 	}
 
-	public void setManager_password(String manager_password) {
-		this.manager_password = manager_password;
+	public void setManagerPassword(String managerPassword) {
+		this.managerPassword = managerPassword;
 	}
 
-	public String getManager_name() {
-		return manager_name;
+	public String getManagerName() {
+		return managerName;
 	}
 
-	public void setManager_name(String manager_name) {
-		this.manager_name = manager_name;
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 
-	public Manager(Long manager_id, String manager_email, String manager_password, String manager_name) {
+	public Manager(Long managerId, String managerEmail, String managerPassword, String managerName) {
 		super();
-		this.manager_id = manager_id;
-		this.manager_email = manager_email;
-		this.manager_password = manager_password;
-		this.manager_name = manager_name;
+		this.managerId = managerId;
+		this.managerEmail = managerEmail;
+		this.managerPassword = managerPassword;
+		this.managerName = managerName;
 	}
 
 	@Override
 	public String toString() {
-		return "Manager [manager_id=" + manager_id + ", manager_email=" + manager_email + ", manager_password="
-				+ manager_password + ", manager_name=" + manager_name + "]";
+		return "Manager [managerId=" + managerId + ", managerEmail=" + managerEmail + ", managerPassword="
+				+ managerPassword + ", managerName=" + managerName + "]";
 	}
 	
 	

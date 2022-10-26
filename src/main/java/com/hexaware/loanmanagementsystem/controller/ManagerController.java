@@ -53,7 +53,7 @@ public class ManagerController {
 	
 	@GetMapping("/getmanager/{manager_id}")
 	@ApiOperation(value = "Get a Manager by id")
-	public Optional<Manager> getManager(@PathVariable("manager_id") Long manager_id) throws ResourceNotFoundException {
+	public Optional<Manager> getManagerById(@PathVariable("manager_id") Long manager_id) throws ResourceNotFoundException {
 		return managerService.getManagerById(manager_id);
 	}
 	

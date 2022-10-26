@@ -10,10 +10,10 @@ import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
 public interface ICustomerService {
 	
 	public List<Customer> findAllCustomers();
-	public Optional <Customer> getCustomerById(Long customer_id)throws ResourceNotFoundException;
-	public void deleteById_customer(Long customer_id)throws ResourceNotFoundException;
-	public Customer save_customer(Customer customer_id);
-	public Customer updatecustomer(Customer customer);
+	public Optional <Customer> getCustomerById(Long customerId)throws ResourceNotFoundException;
+	public void deleteBycustomerId(Long customerId)throws ResourceNotFoundException;
+	public Customer savecustomer(Customer customerId);
+	 Customer updatecustomer(Customer customer,Long customerId);
 	
 
 }

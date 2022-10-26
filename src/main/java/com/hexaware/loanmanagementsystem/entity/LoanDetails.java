@@ -1,12 +1,19 @@
 package com.hexaware.loanmanagementsystem.entity;
 
+import java.time.Instant;
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.CreatedDate;
+
 
 	@Entity
 	@Table(name="LoanDetails")
@@ -14,82 +21,175 @@ import javax.persistence.Table;
 		
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Column(name="loan_id")
-		public Long loan_id;
+		@Column(name="loanId")
+		public Long loanId;
 		
-		@Column(name="loan_status")
-		public String loan_status;
+		@Column(name="loanStatus")
+		public String loanStatus;
 		
-		@Column(name="loan_term")
-		public String loan_term;
+		@Column(name="loanTerm")
+		public String loanTerm;
 		
-		@Column(name="loan_date")
-		public String loan_date;
+		@CreatedDate
+		 private Instant loanStartDate;
+
+//		@Column(name="loanstartdate")
+//		public String loanStartDate;
+		
+		public float loanProcesingFee;
+		
+		@Column(name="loanAmount")
+		public float loanAmount;
 		
 		
-		@Column(name="loan_amount")
-		public float loan_amount;
+		@Column(name="loan_Type")
+		public String loanType;
 		
+		@Column(name="loanBalance")
+		public float loanBalance;
+/*		
+		@ManyToOne
+	    @JoinColumn(name="managerId", nullable=false)
+		public Manager manager;
 		
-		@Column(name="loan_type")
-		public String loantype;
-	
+*/
+		
 
 		public LoanDetails() {
 			// TODO Auto-generated constructor stub
 		}
 
-		public Long getLoan_id() {
-			return loan_id;
+
+
+		public LoanDetails(Long loanId, String loanStatus, String loanTerm, Instant loanStartDate, float loanProcesingFee,
+				float loanAmount, String loanType, float loanBalance, Manager manager) {
+			super();
+			this.loanId = loanId;
+			this.loanStatus = loanStatus;
+			this.loanTerm = loanTerm;
+			this.loanStartDate = loanStartDate;
+			this.loanProcesingFee = loanProcesingFee;
+			this.loanAmount = loanAmount;
+			this.loanType = loanType;
+			this.loanBalance = loanBalance;
+			//this.manager = manager;
 		}
 
-		public void setLoan_id(Long loan_id) {
-			this.loan_id = loan_id;
+
+
+		public Long getLoanId() {
+			return loanId;
 		}
 
-		public String getLoan_status() {
-			return loan_status;
+
+
+		public void setLoanId(Long loanId) {
+			this.loanId = loanId;
 		}
 
-		public void setLoan_status(String loan_status) {
-			this.loan_status = loan_status;
+
+
+		public String getLoanStatus() {
+			return loanStatus;
 		}
 
-		public String getLoan_term() {
-			return loan_term;
+
+
+		public void setLoanStatus(String loanStatus) {
+			this.loanStatus = loanStatus;
 		}
 
-		public void setLoan_term(String loan_term) {
-			this.loan_term = loan_term;
+
+
+		public String getLoanTerm() {
+			return loanTerm;
 		}
 
-		public String getLoan_date() {
-			return loan_date;
+
+
+		public void setLoanTerm(String loanTerm) {
+			this.loanTerm = loanTerm;
 		}
 
-		public void setLoan_date(String loan_date) {
-			this.loan_date = loan_date;
+
+
+		public Instant getloanStartDate() {
+			return loanStartDate;
 		}
 
-		public float getLoan_amount() {
-			return loan_amount;
+
+
+		public void setloanStartDate(Instant loanStartDate) {
+			this.loanStartDate = loanStartDate;
 		}
 
-		public void setLoan_amount(float loan_amount) {
-			this.loan_amount = loan_amount;
+
+
+		public float getLoanProcesingFee() {
+			return loanProcesingFee;
 		}
 
-		public String getLoantype() {
-			return loantype;
+
+
+		public void setLoanProcesingFee(float loanProcesingFee) {
+			this.loanProcesingFee = loanProcesingFee;
 		}
 
-		public void setLoantype(String loantype) {
-			this.loantype = loantype;
+
+
+		public float getLoanAmount() {
+			return loanAmount;
 		}
+
+
+
+		public void setLoanAmount(float loanAmount) {
+			this.loanAmount = loanAmount;
+		}
+
+
+
+		public String getLoanType() {
+			return loanType;
+		}
+
+
+
+		public void setLoanType(String loanType) {
+			this.loanType = loanType;
+		}
+
+
+
+		public float getLoanBalance() {
+			return loanBalance;
+		}
+
+
+
+		public void setLoanBalance(float loanBalance) {
+			this.loanBalance = loanBalance;
+		}
+
+
+/*
+		public Manager getManager() {
+			return manager;
+		}
+
+
+
+		public void setManager(Manager manager) {
+			this.manager = manager;
+		}
+
+*/
 
 		
 
 		
-}
-
 		
+		
+		
+
+	}		

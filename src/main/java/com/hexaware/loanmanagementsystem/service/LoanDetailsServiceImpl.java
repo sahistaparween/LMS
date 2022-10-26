@@ -16,6 +16,8 @@ public  class LoanDetailsServiceImpl implements ILoanDetailsService{
 	
 	@Autowired
 	LoanDetailsRepository loandetailsRepo;
+	
+
 
 	@Override
 	public List<LoanDetails> findAllloan() {
@@ -23,30 +25,26 @@ public  class LoanDetailsServiceImpl implements ILoanDetailsService{
 	}
 
 	@Override
-	public  Optional<LoanDetails>getLoanById(Long loan_id) throws ResourceNotFoundException
+	public  Optional<LoanDetails> getLoanById(Long loanId) throws ResourceNotFoundException
 	{
-		return null;
+		return loandetailsRepo.findById(loanId);
 	}
 
 	@Override
-	public void deleteById(Long loan_id)throws ResourceNotFoundException {
-		loandetailsRepo.deleteById(loan_id);
+	public void deleteByLoanId(Long loanId)throws ResourceNotFoundException {
+		loandetailsRepo.deleteById(loanId);
 	}
 
 	@Override
-	public LoanDetails save(LoanDetails loandetails) {
+	public LoanDetails saveLoandetails(LoanDetails loandetails) {
 		return loandetailsRepo.save(loandetails);
 	}
 
 
 
 	@Override
-	public LoanDetails updateLoanDetails(LoanDetails loandetails, Long loan_id) throws ResourceNotFoundException {
+	public LoanDetails updateLoanDetails(LoanDetails loandetails, Long loanId) throws ResourceNotFoundException {
 		
 		return loandetailsRepo.save(loandetails);
 	}
-
-	
-	
-
 }

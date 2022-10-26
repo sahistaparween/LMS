@@ -10,9 +10,10 @@ public interface ILoanDetailsService {
 
 
 	public List<LoanDetails> findAllloan();
-	public Optional<LoanDetails>getLoanById(Long loan_id)throws ResourceNotFoundException;
+	//public Optional<LoanDetails>findByLoanId(Long loanId)throws ResourceNotFoundException;
 
-	public void deleteById(Long loan_id)throws ResourceNotFoundException;;
-	public LoanDetails save(LoanDetails loandetails);
-	LoanDetails updateLoanDetails(LoanDetails loandetails,Long loan_id)throws ResourceNotFoundException;
+	public void deleteByLoanId(Long loanId)throws ResourceNotFoundException;;
+	public LoanDetails saveLoandetails(LoanDetails loandetails);
+	LoanDetails updateLoanDetails(LoanDetails loandetails,Long loanId)throws ResourceNotFoundException;
+	public Optional<LoanDetails> getLoanById(Long loanId)throws ResourceNotFoundException;
 }

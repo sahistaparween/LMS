@@ -41,7 +41,7 @@ public class LoanDetailsController {
 	ILoanDetailsService LoanDetailsService;
 	
 	@GetMapping("/getallloandetails")
-	@ApiOperation(value = "view a list of LoanDetailss",response = List.class)
+	@ApiOperation(value = "view a list of LoanDetails",response = List.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200,message = "Successfully retrieved list of LoanDetailss"),
 			@ApiResponse(code = 401,message = "you are not authorized to view this resource"),
@@ -58,37 +58,37 @@ public class LoanDetailsController {
 	public String saveLoanDetails(
 			@ApiParam (value = "LoanDetailsDetails is stored in database",required = true)
 			@RequestBody LoanDetails loandetails) {
-		return LoanDetailsService.save(loandetails) + "added successfully";
+		return LoanDetailsService.saveLoandetails(loandetails) + "added successfully";
 	}
 	
-	@DeleteMapping("/deleteloandetails/{loan_id}")
+	@DeleteMapping("/deleteloandetails/{loanId}")
 	@ApiOperation(value = "Delete a LoanDetail by id")
-	public void deleteLoanDetails(@PathVariable("loan_id") Long loan_id)throws ResourceNotFoundException {
-		 LoanDetailsService.deleteById(loan_id) ;
+	public void deleteLoanDetails(@PathVariable("loanId") Long loanId)throws ResourceNotFoundException {
+		 LoanDetailsService.deleteByLoanId(loanId) ;
 	}
 	
-	@GetMapping("/getloandetails/{loan_id}")
+	@GetMapping("/getloandetails/{loanId}")
 	@ApiOperation(value = "Get a LoanDetails by id")
-	public Optional<LoanDetails> getLoanDetails(
+	public Optional<LoanDetails> getLoanById(
 			@ApiParam (value = "Returns the LoanDetails with Id",required = true)
-			@PathVariable("loan_id") Long loan_id) throws ResourceNotFoundException {
-		return LoanDetailsService.getLoanById(loan_id);
+			@PathVariable("loanId") Long loanId) throws ResourceNotFoundException {
+		return LoanDetailsService.getLoanById(loanId);
 	}
 	
-	@PutMapping("/updateloandetails{loan_id}")
+	@PutMapping("/updateloandetails{loanId}")
 	@ApiOperation(value = "Get a LoanDetails by id")
 	public LoanDetails Update(
 			@ApiParam (value = "LoanDetails object to update",required = true)
 			@RequestBody LoanDetails loandetails,
 			@ApiParam (value="returns the customer with id to update",required = true)
-			@PathVariable("loan_id") Long loan_id)throws Exception {
+			@PathVariable("loanId") Long loanId)throws Exception {
 
-		LoanDetails existingLoanDetails =  LoanDetailsService.getLoanById(loan_id)
-				.orElseThrow(() -> new Exception("Loan Not Found" + loan_id));
-		existingLoanDetails.setLoan_id(loandetails.getLoan_id());
-		existingLoanDetails.setLoantype(loandetails.getLoantype());
+		LoanDetails existingLoanDetails =  LoanDetailsService.getLoanById(loanId)
+				.orElseThrow(() -> new Exception("Loan Not Found" + loanId));
+		existingLoanDetails.setLoanId(loandetails.getLoanId());
+		existingLoanDetails.setLoanType(loandetails.getLoanType());
 		
 		
-		return LoanDetailsService.updateLoanDetails(existingLoanDetails, loan_id);
+		return LoanDetailsService.updateLoanDetails(existingLoanDetails, loanId);
 	}
 }
