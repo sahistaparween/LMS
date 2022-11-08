@@ -13,7 +13,7 @@ public interface ICustomerService {
 	public Optional <Customer> getCustomerById(Long customerId)throws ResourceNotFoundException;
 	public void deleteBycustomerId(Long customerId)throws ResourceNotFoundException;
 	public Customer savecustomer(Customer customerId);
-	 Customer updatecustomer(Customer customer,Long customerId);
+	 public Customer updatecustomer(Customer customer,Long customerId);
 	public List<Customer> findByCustomerName(String customerName);
 	
 }

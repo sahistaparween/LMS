@@ -4,6 +4,7 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
-
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/customerapi")
 @Api(value = "Loan Management System",description = "Operations of Customer class")
@@ -43,11 +43,11 @@ public class CustomerController {
 	public List<Customer> getAllCustomers(){
 		return customerservice.findAllCustomers();
 		}
-	@PostMapping("/savecustomer")
-	@ApiOperation(value = "Add a customer ")
-	public Customer saveCustomer(
-			@ApiParam (value = "CustomerDetails is stored in database",required = true)
-			@RequestBody Customer customer) {
+	@PostMapping("/addcustomer")
+	//@ApiOperation(value = "Add a customer ")
+	public Customer  savecustomer(@RequestBody Customer customer)
+			//@ApiParam (value = "CustomerDetails is stored in database",required = true)
+			 {
 		return customerservice.savecustomer(customer) ;
 	}
 	
