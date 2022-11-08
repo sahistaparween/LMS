@@ -77,7 +77,10 @@ public class CustomerController {
 				.orElseThrow(() -> new Exception("Customer not found with id" + customerId));
 		existingCustomer.setCustomerId(customer.getCustomerId());
 		existingCustomer.setCustomerName(customer.getCustomerName());
-		
+		existingCustomer.setCustomerEmail(customer.getCustomerEmail());
+		existingCustomer.setCustomerAddress(customer.getCustomerAddress());
+		existingCustomer.setCustomerPhone(customer.getCustomerPhone());
+		existingCustomer.setCustomerPassword(customer.getCustomerPassword());
 		
 		return customerservice.updatecustomer(existingCustomer, customerId);
 		

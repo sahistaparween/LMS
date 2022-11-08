@@ -47,4 +47,10 @@ public  class LoanDetailsServiceImpl implements ILoanDetailsService{
 		
 		return loandetailsRepo.save(loandetails);
 	}
+
+	@Override
+	public List<LoanDetails> findByLoanType(String loanType) {
+		
+		return loandetailsRepo.findByLoanType(loanType);
+	}
 }

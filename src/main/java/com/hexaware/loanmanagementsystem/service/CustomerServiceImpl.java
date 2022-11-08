@@ -42,6 +42,12 @@ public class CustomerServiceImpl implements ICustomerService{
 		
 		return customerRepo.save(customer);
 }
+
+	@Override
+	public List<Customer> findByCustomerName(String customerName) {
+		
+		return customerRepo.findByCustomerName(customerName);
+	}
 }
 
 	

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hexaware.loanmanagementsystem.entity.Customer;
 import com.hexaware.loanmanagementsystem.entity.LoanDetails;
 
 import com.hexaware.loanmanagementsystem.exception.ResourceNotFoundException;
@@ -87,8 +86,18 @@ public class LoanDetailsController {
 				.orElseThrow(() -> new Exception("Loan Not Found" + loanId));
 		existingLoanDetails.setLoanId(loandetails.getLoanId());
 		existingLoanDetails.setLoanType(loandetails.getLoanType());
+		existingLoanDetails.setLoanTerm(loandetails.getLoanTerm());
+		existingLoanDetails.setLoanBalance(loandetails.getLoanBalance());
+		
 		
 		
 		return LoanDetailsService.updateLoanDetails(existingLoanDetails, loanId);
+	}
+	
+	@GetMapping("/getLoanDetailsByLoanType/{loanType}")
+	List<LoanDetails> getLoanDetailsByLoanType(
+			@ApiParam (value="returns the loan details with loan type",required = true)
+			@PathVariable("loantype") String loanType	){
+		return LoanDetailsService.findByLoanType(loanType);
 	}
 }

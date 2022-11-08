@@ -16,4 +16,5 @@ public interface ILoanDetailsService {
 	public LoanDetails saveLoandetails(LoanDetails loandetails);
 	LoanDetails updateLoanDetails(LoanDetails loandetails,Long loanId)throws ResourceNotFoundException;
 	public Optional<LoanDetails> getLoanById(Long loanId)throws ResourceNotFoundException;
+	public List<LoanDetails> findByLoanType(String loanType);
 }
