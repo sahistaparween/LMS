@@ -58,8 +58,9 @@ public class Manager {
 		this.customerlist = customerlist;
 	}
 
+	
+
 	public Manager() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 

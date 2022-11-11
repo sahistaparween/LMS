@@ -11,9 +11,9 @@ public interface ICustomerService {
 	
 	public List<Customer> findAllCustomers();
 	public Optional <Customer> getCustomerById(Long customerId)throws ResourceNotFoundException;
-	public void deleteBycustomerId(Long customerId)throws ResourceNotFoundException;
+	public void deleteByCustomerId(Long customerId)throws ResourceNotFoundException;
 	public Customer savecustomer(Customer customerId);
-	 public Customer updatecustomer(Customer customer,Long customerId);
+	 public Customer updateCustomer(Customer customer,Long customerId);
 	public List<Customer> findByCustomerName(String customerName);
 	
 }

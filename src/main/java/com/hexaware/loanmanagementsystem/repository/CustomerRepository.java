@@ -12,6 +12,8 @@ import com.hexaware.loanmanagementsystem.entity.Customer;
 //@EnableJpaRepositories 
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
 	public List<Customer> findByCustomerName(String customerName);
+
+	
 	
 
 	

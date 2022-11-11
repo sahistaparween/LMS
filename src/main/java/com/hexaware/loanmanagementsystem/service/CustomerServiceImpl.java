@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements ICustomerService{
 	}
 
 	@Override
-	public void deleteBycustomerId(Long customerId)throws ResourceNotFoundException {
+	public void deleteByCustomerId(Long customerId)throws ResourceNotFoundException {
 		customerRepo.deleteById(customerId);
 	}
 
@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements ICustomerService{
 
 
 	@Override
-	public Customer updatecustomer(Customer customer,Long customerId){
+	public Customer updateCustomer(Customer customer,Long customerId){
 		
 		return customerRepo.save(customer);
 }

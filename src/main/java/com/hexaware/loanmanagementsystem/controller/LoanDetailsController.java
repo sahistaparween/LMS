@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/loandetailsapi")
 @Api(value = "Loan Management System",description = "Operations of LoanDetails class")
@@ -61,33 +61,34 @@ public class LoanDetailsController {
 		return LoanDetailsService.saveLoandetails(loandetails) + "added successfully";
 	}
 	
-	@DeleteMapping("/deleteloandetails/{loanId}")
+	@DeleteMapping("/deleteloandetails/{loanid}")
 	@ApiOperation(value = "Delete a LoanDetail by id")
-	public void deleteLoanDetails(@PathVariable("loanId") Long loanId)throws ResourceNotFoundException {
+	public void deleteLoanDetails(@PathVariable("loanid") Long loanId)throws ResourceNotFoundException {
 		 LoanDetailsService.deleteByLoanId(loanId) ;
 	}
 	
-	@GetMapping("/getloandetails/{loanId}")
-	@ApiOperation(value = "Get a LoanDetails by id")
+	@GetMapping("/getloandetails/{loanid}")
+	//@ApiOperation(value = "Get a LoanDetails by id")
 	public Optional<LoanDetails> getLoanById(
-			@ApiParam (value = "Returns the LoanDetails with Id",required = true)
-			@PathVariable("loanId") Long loanId) throws ResourceNotFoundException {
+			//@ApiParam (value = "Returns the LoanDetails with Id",required = true)
+			@PathVariable("loanid") Long loanId) throws ResourceNotFoundException {
 		return LoanDetailsService.getLoanById(loanId);
 	}
 	
-	@PutMapping("/updateloandetails{loanId}")
-	@ApiOperation(value = "Get a LoanDetails by id")
+	@PutMapping("/updateloandetails/{loanid}")
+	//@ApiOperation(value = "Get a LoanDetails by id")
 	public LoanDetails Update(
-			@ApiParam (value = "LoanDetails object to update",required = true)
+			//@ApiParam (value = "LoanDetails object to update",required = true)
 			@RequestBody LoanDetails loandetails,
-			@ApiParam (value="returns the customer with id to update",required = true)
-			@PathVariable("loanId") Long loanId)throws Exception {
+			//@ApiParam (value="returns the customer with id to update",required = true)
+			@PathVariable("loanid") Long loanId)throws Exception {
 
 		LoanDetails existingLoanDetails =  LoanDetailsService.getLoanById(loanId)
 				.orElseThrow(() -> new Exception("Loan Not Found" + loanId));
-		existingLoanDetails.setLoanId(loandetails.getLoanId());
+		//existingLoanDetails.setLoanId(loandetails.getLoanId());
 		existingLoanDetails.setLoanType(loandetails.getLoanType());
 		existingLoanDetails.setLoanTerm(loandetails.getLoanTerm());
+		existingLoanDetails.setLoanStatus(loandetails.getLoanStatus());
 		existingLoanDetails.setLoanBalance(loandetails.getLoanBalance());
 		
 		
@@ -95,7 +96,7 @@ public class LoanDetailsController {
 		return LoanDetailsService.updateLoanDetails(existingLoanDetails, loanId);
 	}
 	
-	@GetMapping("/getLoanDetailsByLoanType/{loanType}")
+	@GetMapping("/getLoanDetailsByLoanType/{loantype}")
 	List<LoanDetails> getLoanDetailsByLoanType(
 			@ApiParam (value="returns the loan details with loan type",required = true)
 			@PathVariable("loantype") String loanType	){

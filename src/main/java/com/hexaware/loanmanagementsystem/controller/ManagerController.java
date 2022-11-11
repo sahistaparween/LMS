@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/managerapi")
 @Api(value = "Loan Management System",description = "Operations of Manager class")
@@ -52,10 +52,10 @@ public class ManagerController {
 		return managerService.savemanager(manager) + "Manager added Successfully";
 	}
 	
-	@GetMapping("/getmanager/{manager_id}")
+	@GetMapping("/getmanager/{managerid}")
 	@ApiOperation(value = "Get a Manager by id")
-	public Optional<Manager> getManagerById(@PathVariable("manager_id") Long manager_id) throws ResourceNotFoundException {
-		return managerService.getManagerById(manager_id);
+	public Optional<Manager> getManagerById(@PathVariable("managerid") Long managerId) throws ResourceNotFoundException {
+		return managerService.getManagerById(managerId);
 	}
 	
 	

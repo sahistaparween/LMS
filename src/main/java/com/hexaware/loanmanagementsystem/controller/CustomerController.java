@@ -43,6 +43,7 @@ public class CustomerController {
 	public List<Customer> getAllCustomers(){
 		return customerservice.findAllCustomers();
 		}
+	
 	@PostMapping("/addcustomer")
 	//@ApiOperation(value = "Add a customer ")
 	public Customer  savecustomer(@RequestBody Customer customer)
@@ -51,38 +52,38 @@ public class CustomerController {
 		return customerservice.savecustomer(customer) ;
 	}
 	
-	@DeleteMapping("/deletecustomer/{customerId}")
+	@DeleteMapping("/deletecustomer/{customerid}")
 	@ApiOperation(value = "Delete a customer by id")
-	public void deleteCustomer(@PathVariable("customerId") Long customerId) throws ResourceNotFoundException{
-		 customerservice.deleteBycustomerId(customerId) ;
+	public void deleteCustomer(
+			@PathVariable("customerid") Long customerId) throws ResourceNotFoundException{
+		 customerservice.deleteByCustomerId(customerId) ;
 	}
 	
-	@GetMapping("/getcustomer/{customerId}")
-	@ApiOperation(value = "Get a customer by id")
+	@GetMapping("/getcustomer/{customerid}")
+	//@ApiOperation(value = "Get a customer by id")
 	public  Optional <Customer> getCustomerById(
-			@ApiParam (value="returns the customer with id",required = true)
-			@PathVariable("customerId") Long customerId) throws ResourceNotFoundException{
+			//@ApiParam (value="returns the customer with id",required = true)
+			@PathVariable("customerid") Long customerId) throws ResourceNotFoundException{
 		return customerservice.getCustomerById(customerId);
 	}
 	
-	@PutMapping("/updatecustomer/{customerId}")
-	@ApiOperation(value = "update a customerby id.......")
+	@PutMapping("/updatecustomer/{customerid}")
+	//@ApiOperation(value = "update a customerby id.......")
 	 public Customer Update(
-			@ApiParam (value = "customer object to update",required = true)
 			 @RequestBody Customer customer,
-			@ApiParam (value="returns the customer with id to update",required = true)
-			@PathVariable("customerId") Long customerId) throws Exception  {
+			//@ApiParam (value="returns the customer with id to update",required = true)
+			@PathVariable("customerid") Long customerId) throws Exception  {
 		
 		Customer existingCustomer =  customerservice.getCustomerById(customerId)
 				.orElseThrow(() -> new Exception("Customer not found with id" + customerId));
-		existingCustomer.setCustomerId(customer.getCustomerId());
+		//existingCustomer.setCustomerId(customer.getCustomerId());
 		existingCustomer.setCustomerName(customer.getCustomerName());
 		existingCustomer.setCustomerEmail(customer.getCustomerEmail());
 		existingCustomer.setCustomerAddress(customer.getCustomerAddress());
 		existingCustomer.setCustomerPhone(customer.getCustomerPhone());
 		existingCustomer.setCustomerPassword(customer.getCustomerPassword());
 		
-		return customerservice.updatecustomer(existingCustomer, customerId);
+		return customerservice.updateCustomer(existingCustomer, customerId);
 		
 	}
 
